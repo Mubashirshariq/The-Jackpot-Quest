@@ -1,38 +1,243 @@
-.App {
-  text-align: center;
+/* Common styles for all screen sizes */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#heading-container {
+  height: 210px;
+  background-color: rgb(130, 122, 170);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+#content-container {
+  overflow-y: scroll;
+  padding: 50px;
+  background-color: rgb(130, 122, 170);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.head1,
+.head2 {
+  color: #00467d;
+  font-weight: bold;
+  text-transform: uppercase;
+  transform: matrix(1.00, -0.25, 0.00, 1.00, 0, 0);
+  -ms-transform: matrix(1.00, -0.25, 0.00, 1.00, 0, 0);
+  -webkit-transform: matrix(1.00, -0.25, 0.00, 1.00, 0, 0);
+}
+
+.head1 {
+  font-size: 6em;
+  text-shadow: 5px 5px #ff9800, 8px 8px rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+.head2 {
+  font-size: 1.7em;
+  margin: 0 25px;
+}
+
+.head2:before,
+.head2:after {
+  content: "";
+  position: absolute;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.head2:nth-of-type(2) {
+  font-size: 1.5em;
+  float: right;
+}
+
+.head2:nth-of-type(1):before {
+  width: 5%;
+  height: 4px;
+  margin: 3% 0 0 -6%;
+}
+
+.head2:nth-of-type(1):after {
+  width: 65%;
+  height: 4px;
+  margin: 3% 0 0 2%;
+}
+
+.head2:nth-of-type(2):before {
+  width: 65%;
+  height: 4px;
+  margin: 9% 0 0 -68%;
+}
+
+.head2:nth-of-type(2):after {
+  width: 10%;
+  height: 4px;
+  margin: 9% 0 0 2%;
+}
+
+/* Media queries for responsive layout */
+
+/* Adjust styles for screen sizes up to 768px */
+@media (max-width: 768px) {
+  #heading-container {
+    padding: 30px;
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .head1 {
+    font-size: 4em;
+  }
+  
+  .head2 {
+    font-size: 1.2em;
   }
 }
+
+/* Adjust styles for screen sizes up to 480px */
+@media (max-width: 480px) {
+  #heading-container {
+    padding: 20px;
+  }
+  
+  .head1 {
+    font-size: 3em;
+  }
+  
+  .head2 {
+    font-size: 1em;
+  }
+}
+
+/* Button styles */
+
+button {
+  background-color: rgb(130, 122, 170);
+  position: relative;
+  display: inline-block;
+  padding: 15px 20px;
+  margin: 20px 0;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: 50px;
+}
+
+button:hover {
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+button:nth-child(1) {
+  filter: hue-rotate(270deg);
+}
+
+button:nth-child(2) {
+  filter: hue-rotate(110deg);
+}
+
+button span {
+  position: absolute;
+  display: block;
+}
+
+button span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+button span:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes animate3 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+#ether1 {
+  width: 300px;
+  height: 200px;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
